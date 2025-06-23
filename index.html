@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Commandes Minecraft</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background-color: #f0f0f0; }
+    label { display: block; margin-top: 10px; }
+    input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; }
+    .shulker { margin-top: 10px; }
+    .submit { margin-top: 20px; background-color: green; color: white; padding: 10px; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <h1>Commande de blocs - Entreprise Minecraft</h1>
+
+  <form id="commandeForm">
+    <label>Nom du bloc (Français/Anglais)</label>
+    <input type="text" name="bloc" placeholder="Ex: Sable / Sand" required>
+
+    <label>Quantité</label>
+    <input type="number" name="quantite" required min="1">
+
+    <label>Mettre dans des shulkers ?</label>
+    <select name="shulker">
+      <option value="oui">Oui</option>
+      <option value="non">Non</option>
+    </select>
+
+    <label>Prix proposé (en diamants ou autre)</label>
+    <input type="text" name="prix" placeholder="Ex: 5 diamants">
+
+    <label>Nom en jeu</label>
+    <input type="text" name="nomIG" required>
+
+    <label>Pseudo Discord</label>
+    <input type="text" name="discord" required>
+
+    <button class="submit" type="submit">Envoyer la commande</button>
+  </form>
+
+  <div id="resultat" style="margin-top: 20px;"></div>
+
+  <script>
+    document.getElementById("commandeForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      const obj = Object.fromEntries(data.entries());
+      document.getElementById("resultat").innerHTML = `
+        <h3>Commande enregistrée :</h3>
+        <pre>${JSON.stringify(obj, null, 2)}</pre>
+        (Note : ceci n'est pas encore sauvegardé !)
+      `;
+    });
+  </script>
+
+</body>
+</html>
